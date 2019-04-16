@@ -2,9 +2,7 @@
 
 Screenshots
 
-![Screenshot](photo(1).png)
-
-![Screenshot](photo (2).png)
+![Screenshot1]((photo (1).png)
 
 Explain the project in general and how to run it?
 
