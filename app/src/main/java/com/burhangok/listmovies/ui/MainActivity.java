@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.burhangok.listmovies.R;
+import com.burhangok.listmovies.helpers.AlertDialogManager;
 import com.burhangok.listmovies.helpers.ChangeFragment;
+import com.burhangok.listmovies.helpers.ConnectionDetector;
 import com.burhangok.listmovies.models.MoviesResponse;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     MoviesFragment moviesFragment;
     Bundle bundleData;
+
+    ConnectionDetector cd;
+    AlertDialogManager alert;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -65,6 +70,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        alert = new AlertDialogManager();
+
+        // internet baglanti kontrolu yapiliyor
+
+        cd = new ConnectionDetector(this);
+        if (!cd.isConnectingToInternet()) {
+
+            alert.showAlertDialog(this, "INTERNET CONNECTION ERROR! ",
+                    "Please check your internet connection again!", false);
+
+        }
+
+        // internet baglanti kontrolu yapiliyor -- bitis
+
         moviesFragment = new MoviesFragment();
         bundleData = new Bundle();
         bundleData.putString("type", "top_rated");
@@ -75,10 +94,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
     }
-
-
     private void changeFragment(Fragment fragment) {
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
