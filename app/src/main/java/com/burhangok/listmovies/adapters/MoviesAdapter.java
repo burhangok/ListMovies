@@ -22,6 +22,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     List<MovieItem> movies;
     LayoutInflater layoutInflater;
 
+    public boolean movieFav;
+
 
     public MoviesAdapter(Context context, List<MovieItem> movies) {
         this.movies = movies;
@@ -40,7 +42,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
         final LocalDatabaseConfig databaseObj = new LocalDatabaseConfig(holder.itemView.getContext());
 
-        final boolean movieFav = databaseObj.controlMovie(movie.getTitle());
+      movieFav = databaseObj.controlMovie(movie.getTitle());
         if (movieFav) {
             holder.favIV.setImageResource(android.R.drawable.star_big_on);
         }
@@ -54,6 +56,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         holder.favIV.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                movieFav = databaseObj.controlMovie(movie.getTitle());
                 if (movieFav) {
                     databaseObj.deleteMovie(movie.getTitle());
                     holder.favIV.setImageResource(android.R.drawable.star_big_off);
