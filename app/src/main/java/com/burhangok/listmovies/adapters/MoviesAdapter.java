@@ -53,23 +53,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         // picasso kütüphanesi kullanarak ilgili resmi aldıktan sonra imageview e set ettik
         Picasso.get().load(Constants.MOVIEDB_SMALL_POSTER_URL + movie.getPosterPath()).into(holder.photoIV);
 
-        holder.favIV.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                movieFav = databaseObj.controlMovie(movie.getTitle());
-                if (movieFav) {
-                    databaseObj.deleteMovie(movie.getTitle());
-                    holder.favIV.setImageResource(android.R.drawable.star_big_off);
-                    Toast.makeText(holder.itemView.getContext(), "Movie removed from favourites.", Toast.LENGTH_SHORT).show();
-                } else if (!movieFav) {
-                    databaseObj.savefavMovie(movie);
-                    holder.favIV.setImageResource(android.R.drawable.star_big_on);
-                    Toast.makeText(holder.itemView.getContext(), "Movie added from favourites.", Toast.LENGTH_SHORT).show();
-                }
 
-                return false;
-            }
-        });
 
 
     }

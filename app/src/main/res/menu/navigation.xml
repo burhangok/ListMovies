@@ -3,14 +3,17 @@
 
     <item
         android:id="@+id/top_rated"
+        android:icon="@android:drawable/ic_input_add"
         android:title="TOP RATED" />
 
     <item
         android:id="@+id/upcoming"
+        android:icon="@android:drawable/ic_input_get"
         android:title="UPCOMING" />
 
     <item
         android:id="@+id/now_playing"
+        android:icon="@android:drawable/ic_media_play"
         android:title="NOW PLAYING" />
 
 </menu>
