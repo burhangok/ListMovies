@@ -112,8 +112,8 @@ public class MoviesDetailFragment extends Fragment {
                 movieItem = response.body();
 
                 titleTV.setText(movieItem.getTitle());
-                ratingTV.setText(Float.toString(movieItem.getRating()));
-                releaseTV.setText(movieItem.getReleaseDate());
+                ratingTV.setText(ratingTV.getText()+Float.toString(movieItem.getRating()));
+                releaseTV.setText(releaseTV.getText()+movieItem.getReleaseDate());
 
                 // picasso kütüphanesi kullanarak ilgili resmi aldıktan sonra imageview e set ettik
                 Picasso.get().load(Constants.MOVIEDB_LARGE_POSTER_URL + photo).into(posterIV);
