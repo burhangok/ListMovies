@@ -34,7 +34,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
 
     public MoviesAdapter(Context context, List<MovieItem> movies) {
-        this.context=context;
+        this.context = context;
         this.movies = movies;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -51,7 +51,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
         final LocalDatabaseConfig databaseObj = new LocalDatabaseConfig(holder.itemView.getContext());
 
-      movieFav = databaseObj.controlMovie(movie.getTitle());
+        movieFav = databaseObj.controlMovie(movie.getTitle());
         if (movieFav) {
             holder.favIV.setImageResource(android.R.drawable.star_big_on);
         }
@@ -66,7 +66,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("id",Integer.toString(movie.getId()));
+                bundle.putString("id", Integer.toString(movie.getId()));
+                bundle.putString("photo", movie.getPosterPath());
 
                 MoviesDetailFragment detailFragment = new MoviesDetailFragment();
                 detailFragment.setArguments(bundle);
@@ -96,14 +97,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
             ratingTV = itemView.findViewById(R.id.rating);
             photoIV = itemView.findViewById(R.id.photo);
             favIV = itemView.findViewById(R.id.favStatus);
-            detailBTN=itemView.findViewById(R.id.toDetail);
+            detailBTN = itemView.findViewById(R.id.toDetail);
 
 
         }
 
 
     }
-
 
 
 }

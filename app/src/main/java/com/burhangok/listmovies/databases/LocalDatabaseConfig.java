@@ -103,7 +103,7 @@ public class LocalDatabaseConfig extends SQLiteOpenHelper {
 
     public void deleteMovie(String movieTitle) {
         SQLiteDatabase vt = this.getWritableDatabase();
-        String sqlQuery1 = "DELETE FROM " + TABLE_NAME_1 + " WHERE movie_title=" + movieTitle;
+        String sqlQuery1 = "DELETE FROM " + TABLE_NAME_1 + " WHERE movie_title='" + movieTitle + "'";
         vt.execSQL(sqlQuery1);
 
     }

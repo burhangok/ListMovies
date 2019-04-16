@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMain"
     android:orientation="vertical"
     tools:context=".ui.MoviesDetailFragment">
 
@@ -16,20 +15,19 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
         android:gravity="center_horizontal"
-        android:visibility="invisible"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plotsynopsis" />
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:gravity="center_horizontal"
 
-        android:textColor="@android:color/white"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorMain"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -42,11 +40,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
 
+        android:layout_marginLeft="16dp"
         android:gravity="center_horizontal"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorMain"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -57,21 +56,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
+        android:layout_margin="10dp"
 
-        android:textColor="@android:color/white"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorMain"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userrating" />
 
     <Button
         android:id="@+id/favBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
         android:background="@drawable/image_border"
-        android:drawableLeft="@android:drawable/star_on"
+        android:foregroundGravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
         android:text="ADD TO FAVOURITES"
-        android:textColor="@color/colorSecond" />
+        android:textColor="@color/colorMain"
+        android:textSize="18sp" />
 
 
 </LinearLayout>

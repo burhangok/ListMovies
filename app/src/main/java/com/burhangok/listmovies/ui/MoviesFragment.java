@@ -48,9 +48,9 @@ public class MoviesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        fragmentView = inflater.inflate(R.layout.fragment_movies,null);
-        movieType=getArguments().getString("type");
-        init ();
+        fragmentView = inflater.inflate(R.layout.fragment_movies, null);
+        movieType = getArguments().getString("type");
+        init();
         getMovies();
         return fragmentView;
     }
@@ -67,7 +67,7 @@ public class MoviesFragment extends Fragment {
                 List<MovieItem> results = fetchResults(response);
 
 
-                adapter = new MoviesAdapter(getContext(),results);
+                adapter = new MoviesAdapter(getContext(), results);
 
 
                 // recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -99,10 +99,10 @@ public class MoviesFragment extends Fragment {
     }
 
 
-    public void init () {
+    public void init() {
 
         moviesRV = fragmentView.findViewById(R.id.moviesList);
-        mLayoutManager=new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(getContext());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         moviesRV.setLayoutManager(mLayoutManager);
 

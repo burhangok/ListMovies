@@ -108,7 +108,8 @@
                     android:background="@drawable/image_border"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="GO TO DETAİLS" />
+                    android:text="GO TO DETAİLS"
+                    android:textColor="@color/colorSecond" />
             </LinearLayout>
 
 
