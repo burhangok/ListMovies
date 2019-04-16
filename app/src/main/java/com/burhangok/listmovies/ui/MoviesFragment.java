@@ -2,6 +2,7 @@ package com.burhangok.listmovies.ui;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.burhangok.listmovies.models.MovieItem;
 import com.burhangok.listmovies.models.MoviesResponse;
 import com.burhangok.listmovies.services.getMoviesInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,6 +43,12 @@ public class MoviesFragment extends Fragment {
     LinearLayoutManager mLayoutManager;
 
     String movieType;
+    int pageNumber=1;
+
+    List<MovieItem> results;
+
+     boolean loading = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
 
 
     @Override
@@ -52,6 +60,44 @@ public class MoviesFragment extends Fragment {
         movieType = getArguments().getString("type");
         init();
         getMovies();
+
+        final List<MovieItem> newList = new ArrayList<>();
+
+        moviesRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy > 0)
+                {
+                    visibleItemCount = mLayoutManager.getChildCount();
+                    totalItemCount = mLayoutManager.getItemCount();
+                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
+
+                    if (loading)
+                    {
+                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
+                        {
+                            loading = false;
+                            pageNumber++;
+                            getMovies();
+
+                            int currentSize = adapter.getItemCount();
+                            results.addAll(newList);
+                            adapter.notifyItemRangeInserted(currentSize, results.size() - 2);
+
+                        }
+                    }
+                }
+
+            }
+        });
+
+
         return fragmentView;
     }
 
@@ -64,7 +110,7 @@ public class MoviesFragment extends Fragment {
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
 
 
-                List<MovieItem> results = fetchResults(response);
+               results = fetchResults(response);
 
 
                 adapter = new MoviesAdapter(getContext(), results);
@@ -93,7 +139,7 @@ public class MoviesFragment extends Fragment {
                 this.movieType,
                 Constants.MOVIEDB_API_KEY,
                 Constants.MOVIEDB_LANGUAGE,
-                1
+                this.pageNumber
 
         );
     }
