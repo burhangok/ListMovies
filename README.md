@@ -11,7 +11,7 @@ Screen, database, and other files are grouped into separate folders. It was a mi
 
 Any assumptions/comments/notes about any particular decision?
 
-
+Experience.
 What would you change if you had more time?
 
 Absoultely, more features can be added. For example, a user can write a comment about the movie and share it to friends etc.
